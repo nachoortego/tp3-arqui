@@ -1,0 +1,57 @@
+Apartado A:
+
+Salida esperada:
+
+Cuando se llama a foo1:
+
+Se realiza la operación a = a + (b << 31). Dado que b es 1, b << 31 resulta en 0x80000000 (1 desplazado 31 lugares a la izquierda).
+
+La nueva a será 0x7fffffff + 0x80000000 = 0xffffffff. Esto provocará un desbordamiento (overflow) en un entero de 32 bits, pero el valor impreso será 0xffffffff.
+
+Luego, se imprime 0xffffffff.
+
+Cuando se llama a foo2:
+
+La operación a = a + b ahora se realiza con a en 0xffffffff. Entonces, a = 0xffffffff + 1 = 0x00000000 (esto también provocará un desbordamiento, llevando el resultado a 0).
+
+Luego, se imprime 0x0.
+
+Finalmente, en main, se imprime la salida de foo1 y foo2, resultando en 0xffffffff 0x0.
+---------------------------------
+Salida total:
+Ejecutando foo1...
+0xffffffff
+Ejecutando foo2...
+0x0
+0xffffffff 0x0
+---------------------------------
+
+Apartado B:
+
+Valor de a y Banderas CF y OF
+
+    Después de foo1:
+        Valor de a: 0xffffffff
+        CF (Carry Flag): 1 (ya que se produjo un desbordamiento al sumar)
+        OF (Overflow Flag): 1 (también se produjo un desbordamiento porque la suma excedió el límite positivo de un entero de 32 bits)
+
+    Después de foo2:
+        Valor de a: 0x00000000
+        CF: 0 (no hay carry en este caso)
+        OF: 1 (suma de un número positivo y un número negativo que resulta en 0 es una condición de overflow)
+
+Apartado D:
+
++--------------------+
+| Dirección de Retorno|  (Regreso a main después de foo1)
++--------------------+
+|    A (local a)     |  (Valor de a antes de foo1)
++--------------------+
+|    B (local b)     |  (Valor de b)
++--------------------+
+| Dirección de Retorno|  (Regreso a main después de foo2)
++--------------------+
+|    A (local a)     |  (Valor de a antes de foo2)
++--------------------+
+|    B (local b)     |  (Valor de b)
++--------------------+
