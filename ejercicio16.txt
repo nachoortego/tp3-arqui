@@ -1,0 +1,23 @@
++--------------------+
+| Dirección de Retorno|  <-- Dirección de retorno de f
++--------------------+
+|      h (int)      |  <-- 4 bytes
++--------------------+
+|      g (int)      |  <-- 4 bytes
++--------------------+
+|      f (short)    |  <-- 2 bytes
++--------------------+
+|      e (char)     |  <-- 1 byte
++--------------------+
+|      d (long)     |  <-- 8 bytes
++--------------------+
+|      c (char)     |  <-- 1 byte
++--------------------+
+|      b (int)      |  <-- 4 bytes
++--------------------+
+|      a (char)     |  <-- 1 byte
++--------------------+
+
+
+
+La dirección de retorno de la función f está almacenada en la dirección de memoria 0x401231 al buscarlo con gdb
