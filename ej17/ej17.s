@@ -23,8 +23,8 @@ main:
   call printf
 
   # a) rsp
-  movq %rsp, %rsi
   movq $format_a, %rdi
+  movq %rsp, %rsi
   xorq %rax, %rax
   call printf
 

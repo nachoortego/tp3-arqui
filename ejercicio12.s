@@ -1,7 +1,10 @@
 .section .data
 list: .long 10, 20, 30, 40, 50, 60, 70, 80, 90, 100  # Lista a sumar
 length: .long 10                                     # Tamaño de la lista
-
+format_max: .asciz "Maximo: %ld\n"
+format_min: .asciz "Minimo: %ld\n"
+format_promedio: .asciz "Promedio: %ld\n"
+format_suma: .asciz "Suma: %ld\n"
 
 .section .bss
 result_sum: .long 0
@@ -30,8 +33,10 @@ main:
     movl result_sum, %eax
     movl length, %ecx
     cltd                   # extiende el signo de %eax a 64bits para poder hacer la division, por lo que entendi siempre usa %eax
-    idivl %ecx
+    idivl %ecx             # divide %edx:%eax por %ecx, el resultado de la division entera queda en %eax y el resto en %edx
     movl %eax, result_avg
+
+    call print_results
 
     ret
 
@@ -56,4 +61,27 @@ suma_max_min_loop:
     loop suma_max_min_loop  # decrementa el largo de la fila y repite si es distinto a 0
 
     movl %eax, result_sum
+    ret
+
+print_results:
+    movl result_max, %esi
+    movl $format_max, %edi
+    xor %eax, %eax
+    call printf
+
+    movl result_min, %esi
+    movl $format_min, %edi
+    xor %eax, %eax
+    call printf
+
+    movl result_avg, %esi
+    movl $format_promedio, %edi
+    xor %eax, %eax
+    call printf
+
+    movl result_sum, %esi
+    movl $format_suma, %edi
+    xor %eax, %eax
+    call printf
+
     ret
