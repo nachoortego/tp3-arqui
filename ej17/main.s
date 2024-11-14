@@ -2,7 +2,7 @@
 format: .asciz "%d %d\n"
 format_a: .asciz "rsp: %p\n"
 format_b: .asciz "Direccion cadena de formato: %ld\n"
-format_c: .asciz "Direccion cadena de formato (hex): %p\n"
+format_c: .asciz "Direccion cadena de formato (hex): %x\n"
 format_d: .asciz "Tope de pila: %lx\n"
 format_e: .asciz "rsp + 8: %lx\n"
 format_f: .asciz "i: %ld\n"

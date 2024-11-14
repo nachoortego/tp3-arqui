@@ -14,9 +14,9 @@
 .global main
 
 leave:
-    movq %rbp, %rsp           
-    popq %rbp    
-    ret          
+  movq %rbp, %rsp           
+  popq %rbp    
+  ret          
 
 calculo:
   pushq %rbp                # Guardar el marco de pila anterior
@@ -63,18 +63,12 @@ main:
   movslq %r12d, %r12        # Convertir i a 64 bits
   movslq %r13d, %r13        # Convertir j a 64 bits
 
-  # Alinear la pila antes de la llamada
-  subq $0x10, %rsp            # Alinear la pila a 16 bytes
-  
   # Pasar parámetros adicionales en la pila
   pushq %r12                # Push de i
   pushq %r13                # Push de j
 
   # Llamar a la función calculo
   call calculo
-
-  # Limpiar la pila después de la llamada
-  addq $0x10, %rsp            # Restaurar el tamaño de la pila
 
   # Restaurar el marco de pila anterior
   call leave

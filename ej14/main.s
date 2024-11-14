@@ -21,16 +21,15 @@ main:
     xor %r14, %r14
 
 sum_loop:
-    movq (%r15, %rbx, 8), %rdi
+    movq (%r15, %rbx, 8), %rdi # argv[rbx]
     call atoi                  # Llamar a atoi para convertir el string a int (resultado en %eax)
     movslq %eax, %rax          # Convertir el valor a 64 bits
     
     inc %rbx                   # Mover al siguiente argumento
-    movq %rax, %r13
-    imul %r13, %r13
-    add %r13, %r14              # Sumar el valor al acumulador
+    imul %rax
+    add %rax, %r14              # Sumar el valor al acumulador
 
-    cmpq %r12, %rbx 
+    cmpq %r12, %rbx  # ( rbx - r12 ) >= 0
     jle sum_loop
 
 
