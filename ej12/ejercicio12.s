@@ -16,7 +16,7 @@ result_avg: .long 0
 .globl main
 
 main:
-    xor %eax, %eax          # %eax lo inicializamos en 0, para hacer la suma
+    xor %eax, %eax         # %eax lo inicializamos en 0, para hacer la suma
     movl length, %ecx      # Cargamos el largo de la lista
     lea list, %rdi         # Cargamos la dirección de la lista en %rdi
     
