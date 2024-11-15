@@ -2,7 +2,7 @@
 a: .float 1.0, 2.0, 3.0, 4.0, 5.0
 b: .float 1.5, 3.2 , 4.5, 5.0, 6.0
 len: .byte 5
-format: .asciz "Resultado: %d %d %d %d %d\n"
+format: .asciz "Resultado: %f %f %f %f %f\n"
 
 .text
 .global main
@@ -37,12 +37,12 @@ suma:
 end:
   # Imprimir el resultado
   leaq format, %rdi
-  movq $5, %rax
-  movss (%r8), %xmm0
-  movss 4(%r8), %xmm1
-  movss 8(%r8), %xmm2
-  movss 12(%r8), %xmm3
-  movss 16(%r8), %xmm4
+  movq $1, %rax
+  cvtss2sd (%r8), %xmm0
+  cvtss2sd 4(%r8), %xmm1
+  cvtss2sd 8(%r8), %xmm2
+  cvtss2sd 12(%r8), %xmm3
+  cvtss2sd 16(%r8), %xmm4
 
   call printf
 
