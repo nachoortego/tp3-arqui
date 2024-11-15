@@ -33,8 +33,8 @@ calculo:
   add %ecx, %eax            # Sumar d (%ecx) a %eax
 
   # Capturar los 2 parámetros pasados por la pila y sumarlos
-  movl 16(%rbp), %esi       # Primer parámetro (i)
-  movl 24(%rbp), %edi       # Segundo parámetro (j)
+  movl 16(%rbp), %esi       # Segundo parámetro (j)
+  movl 24(%rbp), %edi       # Primer parámetro (i)
   add %esi, %edi            # Sumar los parámetros
   imul %edi, %eax            # Agregar el resultado a %eax
   
